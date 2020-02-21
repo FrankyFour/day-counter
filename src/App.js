@@ -43,7 +43,7 @@ function App() {
         </h1>
         <a
           className="App-link"
-          href="https://github.com/FrankyFour/"
+          href="https://github.com/FrankyFour/day-counter"
           target="_blank"
           rel="noopener noreferrer"
         >
