@@ -9,13 +9,20 @@ function App() {
   let params = new URLSearchParams(search);
   // Number of days at the start of year til the first meeting (e.g. Year 2020 - First meeting on the 13th. So 13 days set as offset.);
   let offSet = params.get('offSet') || 13; // Fallback value.. use query string value as first method of retrieval
+  let rotationDays = params.get('rotationDays') || 14; // Fallback value.. use query string value as first method of retrieval
+
+
 
   var now = new Date(); // Current Date
   var start = new Date(now.getFullYear(), 0, 0); // Start date of the current year
   var diff = now - start; // Difference in milliseconds
   var oneDay = 1000 * 60 * 60 * 24; // The value of one day in milliseconds
   var day = Math.floor(diff / oneDay); // The No. Day of the year
+
+  var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+  var currentDate = now.getDate()+'/'+ months[now.getMonth()]+'/'+ now.getFullYear();
   console.log('Day of year: ' + day);
+
 
  /*
  Working out which day No. in 14-day rotation.
@@ -28,7 +35,7 @@ function App() {
  * multiply the remainder with the rotation count and round it off to work out dayCounterNumber
  ** e.g. 0.8571 x 14 dayrotation = 11.99 => 12 rounded off
  */
-  var rotationDays = 14;
+
   var dayNumberOffset = day - offSet;
   var weeksPassed = Math.floor(dayNumberOffset/rotationDays)
   var remainderDays = dayNumberOffset/rotationDays - weeksPassed;
@@ -41,6 +48,11 @@ function App() {
         <h1>
           Day {dayCounterNumber}
         </h1>
+
+        <h3>
+          Current date: <br/>
+          {currentDate}
+        </h3>
         <a
           className="App-link"
           href="https://github.com/FrankyFour/day-counter"
