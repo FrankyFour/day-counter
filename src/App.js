@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-//<img src={logo} className="App-logo" alt="logo" />
 import './App.css';
 
 function App() {
@@ -20,7 +18,14 @@ function App() {
   var day = Math.floor(diff / oneDay); // The No. Day of the year
 
   var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-  var currentDate = now.getDate()+'/'+ months[now.getMonth()]+'/'+ now.getFullYear();
+
+  var nowDate = now.getDate();
+
+  if (now.getDate() < 10) {
+    nowDate = '0' + now.getDate();
+  }
+
+  var currentDate = nowDate+'/'+ months[now.getMonth()]+'/'+ now.getFullYear();
   console.log('Day of year: ' + day);
 
 
